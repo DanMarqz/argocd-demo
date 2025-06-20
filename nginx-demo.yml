@@ -6,20 +6,20 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-demo-deploy
+  name: argocd-nginx-test-deploy
   namespace: argocd-demo
 spec:
   replicas: 1
   selector:
     matchLabels: 
-      app: nginx-demo
+      app: argocd-nginx-test
   template:
     metadata:
       labels:
-        app: nginx-demo
+        app: argocd-nginx-test
     spec:
       containers:
-      - name: nginx-demo
+      - name: argocd-nginx-test
         image: nginx
         ports:
         - name: web
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-demo-svc
+  name: argocd-nginx-test-svc
   namespace: argocd-demo
   labels:
-    app: nginx-demo
+    app: argocd-nginx-test
 spec:
   type: LoadBalancer
   ports:
@@ -40,4 +40,4 @@ spec:
     targetPort: 80
     protocol: TCP
   selector:
-    app: nginx-demo
+    app: argocd-nginx-test
